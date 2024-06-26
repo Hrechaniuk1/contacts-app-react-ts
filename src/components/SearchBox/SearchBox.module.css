@@ -1,0 +1,26 @@
+.search {
+    border: 1px solid rgb(13, 225, 233);
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 280px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: transparent;
+    height: 30px;
+    padding: 5px 10px;
+    transition: all 250ms ease-in-out;
+}
+
+.input:focus {
+    border: 1px solid black;
+    box-shadow: 2px 2px 10px black;
+}

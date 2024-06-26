@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    padding: 15px;
+    border: 1px solid turquoise;
+}

@@ -1,0 +1,50 @@
+.container {
+    border: 1px solid rgb(19, 214, 244);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    gap: 10px;
+}
+
+.btn {
+    background-color: aquamarine;
+    width: 100px;
+    padding: 5px;
+    border: 1px solid transparent;
+    outline: transparent;
+    border-radius: 5px;
+    transition: box-shadow 250ms ease-in-out;
+}
+
+.btn:hover {
+    box-shadow: 2px 2px 10px black;
+}
+
+.input {
+    width: 280px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: transparent;
+    height: 30px;
+    padding: 5px 10px;
+    transition: all 250ms ease-in-out;
+}
+
+.input:focus {
+    border: 1px solid black;
+    box-shadow: 2px 2px 10px black;
+}
+
+.error {
+    display: block;
+    padding: 5px;
+    background-color: gray;
+    border-radius: 5px;
+    color: white;
+
+}
