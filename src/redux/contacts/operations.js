@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 
-import { addTask, getTasks, deleteTask, updateTask } from '../../fetch/fetch'
+import { addTask, getTasks, deleteTask, updateTask } from '../../fetch/fetch.ts'
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', 
     async (_, thunkAPI) => {

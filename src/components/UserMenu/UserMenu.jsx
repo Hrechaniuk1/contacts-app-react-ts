@@ -12,7 +12,6 @@ export default function UserMenu() {
     function clickHandler() {
         dispatch(logout())
     }
-
     return (
         <div className={css.container}>
             <p>Hello {user.name}, {user.email}</p>
