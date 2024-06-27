@@ -1,7 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {toast} from 'react-hot-toast'
 
-import { register, login, logout, refreshUser } from '../auth/operations'
+
+import { register, login, logout, refreshUser } from './operations.js'
+import { RootState } from "../store"; 
 
 function errorHandler() {
     toast('Oops, try again', { style: {backgroundColor: 'red'}})
@@ -11,13 +13,16 @@ function loadingHandler() {
     // toast('Loading...', { style: {backgroundColor: 'teal'}})
 }
 
-function resetItems(state) {
-  state.items = []
+
+type initialType = {
+  user: {name: null | string,
+    email: null | string},
+  token: null | string,
+  isLoggedIn: boolean,
+  isRefreshing: boolean,
 }
  
-const authSlice = createSlice({
-    name: 'auth',
-    initialState: {
+const initialState: initialType = {
   user: {
     name: null,
     email: null,
@@ -25,7 +30,12 @@ const authSlice = createSlice({
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-    },
+}
+
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: initialState,
+    reducers: {},
   extraReducers: builder => {
     builder
       .addCase(register.pending, loadingHandler)
@@ -51,7 +61,6 @@ const authSlice = createSlice({
         state.user = {name: null, email: null,}
         state.token = null
         state.isLoggedIn = false
-        resetItems(state)
       })
       .addCase(logout.rejected, errorHandler)
       .addCase(refreshUser.pending, (state) => {
@@ -61,6 +70,13 @@ const authSlice = createSlice({
         state.user = action.payload
         state.isLoggedIn = true
         state.isRefreshing = false
+      })
+      .addCase(refreshUser.rejected, (state) => {
+        state.token = null
+        state.isLoggedIn = false
+        state.isRefreshing = false
+        state.user.email = null
+        state.user.email = null
       })
     }
 })

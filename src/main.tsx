@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import ReactDOM from 'react-dom/client'
 import App from './components/App.jsx'
 import './index.css'
-import { persistor } from './redux/store.js'
+import { persistor } from './redux/store'
 
 import { store } from './redux/store.js'
 import { Provider } from 'react-redux'

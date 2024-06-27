@@ -1,9 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit'
 import {selectFilter} from '../filter/selectors'
+import { RootState } from '../store'
+import * as FetchTask from '../../fetch/fetch.types'
 
-export const selectContacts = state => state.items.items
-export const selectError = state => state.items.error
-export const selectLoading = state => state.items.loading
+export const selectContacts = (state: RootState): FetchTask.Task[] => state.items.items
+export const selectError = (state: RootState): (null | any) => state.items.error
+export const selectLoading = (state: RootState): boolean => state.items.loading
 
 
 

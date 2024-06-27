@@ -21,7 +21,7 @@ async function getTasks(): Promise<FetchTypes.Task[] | []> {
 
 async function addTask(data: Omit<FetchTypes.Task, 'id'>): Promise<FetchTypes.Task> {
     const response = await axios.post<FetchTypes.Task>('/contacts', data)
-    console.log('add', data)
+    // console.log('add', data)
     return response.data
 
 }
@@ -33,11 +33,9 @@ async function deleteTask(id: string): Promise<FetchTypes.Task> {
     return response.data
 }
 
-async function updateTask(data: any) {
-// console.log(data)
+async function updateTask(data: FetchTypes.UpdateType): Promise<FetchTypes.Task> {
     const response = await axios.patch(`/contacts/${data.id}`, data.data)
-    console.log('update', response.data)
-    return response
+    return response.data
 }
 
 // -----------------------------------------------------------

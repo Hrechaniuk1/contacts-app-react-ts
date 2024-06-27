@@ -27,3 +27,8 @@ export type Task = {
     number: string,
 }
 
+export type UpdateType = {
+    id: string,
+    data: Omit<Task, 'id'>
+}
+

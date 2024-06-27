@@ -25,7 +25,7 @@ export default function RegisterMenu() {
     
     function submitHandler(values, actions) {
         const { passwordRepeat, ...data } = values
-        console.log(values)
+        // console.log(values)
             dispatch(register(data))
             actions.resetForm()
     
