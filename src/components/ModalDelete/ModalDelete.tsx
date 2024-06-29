@@ -1,11 +1,13 @@
-import Modal from 'react-modal';
-import { useDispatch } from "react-redux"
+import Modal, { Styles } from 'react-modal';
+import { useAppDispatch } from '../../pages/ContactsPage/ContactsPage.types';
 
 import css from './ModalDelete.module.css'
 import { deleteContact } from '../../redux/contacts/operations'
+import { FC } from 'react';
+import { ModalDeleteProps } from './ModalDelete.types';
 
 
-const customStyles = {
+const customStyles: Styles = {
     overlay: {
       position: 'fixed',
       top: 0,
@@ -34,8 +36,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 
-export default function ModalChange({ isOpen, closeModal, onDeleteId }) {
-    const dispatch = useDispatch()
+const ModalChange: FC<ModalDeleteProps> = ({ isOpen, closeModal, onDeleteId }) => {
+    const dispatch = useAppDispatch()
 
     function deleteHandler() {
         dispatch(deleteContact(onDeleteId))
@@ -57,3 +59,5 @@ export default function ModalChange({ isOpen, closeModal, onDeleteId }) {
 
     )
 }
+
+export default ModalChange

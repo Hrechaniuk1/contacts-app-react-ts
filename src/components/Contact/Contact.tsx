@@ -1,7 +1,7 @@
 import { IoMdContact } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react";
+import { useAppDispatch } from "../../pages/ContactsPage/ContactsPage.types";
+import { FC, useState } from "react";
 
 import css from './Contact.module.css'
 
@@ -9,20 +9,21 @@ import css from './Contact.module.css'
 import { updateContact } from '../../redux/contacts/operations'
 import ModalChange from '../ModalChange/ModalChange'
 import ModalDelete from '../ModalDelete/ModalDelete'
+import { ContactProps } from "./Contact.types";
 
 
-export default function Contact({ userName, userNumber, id }) {
+const Contact: FC<ContactProps> = ({ userName, userNumber, id }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     // function deleteHandler() {
     //     dispatch(deleteContact(id))
         
     // }
 
-    function updateHandler(data) {
+    function updateHandler(data: {changeName: string, changeNumber: string}) {
         dispatch(updateContact({id, data: {name: data.changeName, number: data.changeNumber}}))
         setIsOpen(false)
     }
@@ -42,3 +43,5 @@ export default function Contact({ userName, userNumber, id }) {
         </div>
     )
 }
+
+export default Contact

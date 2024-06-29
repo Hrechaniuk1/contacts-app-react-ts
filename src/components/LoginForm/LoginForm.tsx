@@ -1,24 +1,26 @@
-import { Form, Formik, Field, ErrorMessage } from 'formik'
-import { useDispatch } from 'react-redux'
+import { Form, Formik, Field, ErrorMessage, FormikHelpers } from 'formik'
+import { useAppDispatch } from '../../pages/ContactsPage/ContactsPage.types';
 import { Toaster } from 'react-hot-toast';
 import * as Yup from 'yup';
 
 import css from './LoginForm.module.css'
 import { login } from '../../redux/auth/operations'
+import { loginInitialType } from './LoginForm.types';
+import { FC } from 'react';
 
-export default function LogInMenu() {
-    const dispatch = useDispatch()
+const LogInMenu: FC = () => {
+    const dispatch = useAppDispatch()
 
-    const initialValues = {
+    const initialValues: loginInitialType = {
         email: '',
         password: '',
     }
-    const validationSchema = Yup.object().shape({
+    const validationSchema: Yup.ObjectSchema<loginInitialType> = Yup.object().shape({
         email: Yup.string().email('Enter a valid email').required('Enter the email please'),
         password: Yup.string().min(7, 'at least 7 characters').max(15, 'No more than 15 characters').required('enter your password'),
       })
     
-    function submitHandler(values, actions) {
+    function submitHandler(values: loginInitialType, actions: FormikHelpers<loginInitialType>) {
         dispatch(login({ email: values.email, password: values.password }))
             actions.resetForm()
     }
@@ -40,7 +42,7 @@ export default function LogInMenu() {
             }}
             />
             <p className={css.description}>Please login with your enail and password</p>
-            <Formik
+            <Formik<loginInitialType>
                 initialValues={initialValues}
                 onSubmit={submitHandler}
                 validationSchema={validationSchema}
@@ -60,3 +62,5 @@ export default function LogInMenu() {
         </div>
     )
 }
+
+export default LogInMenu

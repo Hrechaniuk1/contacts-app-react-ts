@@ -1,9 +1,12 @@
-import Modal from 'react-modal';
+import Modal, { Styles } from 'react-modal';
 import css from './ModalChange.module.css'
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FormikHelpers } from 'formik';
+import { FC } from 'react';
+import { ChangeInitialValuesType, ModalChangeProps } from './ModalChange.types';
+import { initialContactsType } from '../../redux/contacts/slice';
 
 
-const customStyles = {
+const customStyles: Styles = {
     overlay: {
       position: 'fixed',
       top: 0,
@@ -32,13 +35,13 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 
-export default function ModalChange({ isOpen, onSubmit, name, number, closeModal }) {
-    const initialValues = {
+const ModalChange: FC<ModalChangeProps> = ({ isOpen, onSubmit, name, number, closeModal }) => {
+    const initialValues: ChangeInitialValuesType = {
         changeName: name,
         changeNumber: number,
     }
 
-    function submitHandler(values, actions) {
+    function submitHandler(values: ChangeInitialValuesType, actions: FormikHelpers<ChangeInitialValuesType>) {
         onSubmit(values)
         actions.resetForm()
         }
@@ -49,7 +52,7 @@ export default function ModalChange({ isOpen, onSubmit, name, number, closeModal
              isOpen={isOpen}
             //  onRequestClose={onRequestClose}
             >
-             <Formik initialValues={initialValues} onSubmit={submitHandler}> 
+             <Formik<ChangeInitialValuesType> initialValues={initialValues} onSubmit={submitHandler}> 
                  <Form className={css.form} >
                      <label >Name
                          <Field type='text' name='changeName' ></Field>
@@ -66,3 +69,5 @@ export default function ModalChange({ isOpen, onSubmit, name, number, closeModal
 
     )
 }
+
+export default ModalChange

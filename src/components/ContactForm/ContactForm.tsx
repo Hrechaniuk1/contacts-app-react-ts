@@ -1,32 +1,33 @@
-import { Formik, Form, Field } from 'formik'
-import { useId } from "react";
+import { Formik, Form, Field, FormikHelpers } from 'formik'
+import { FC, useId } from "react";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik"
-import { useDispatch } from "react-redux"
+import { useAppDispatch } from '../../pages/ContactsPage/ContactsPage.types';
 
 import css from './ContactForm.module.css'
 import {addContact} from '../../redux/contacts/operations'
+import { ContactFormInitialType } from './ContactForm.types';
 
 
-export default function ContactForm() {
+const ContactForm: FC = () => {
     const nameId = useId()
     const telId = useId()
-    const itemId = Math.random() 
-    const dispatch = useDispatch()
-    const ContactSchema = Yup.object().shape({
+    // const itemId = Math.random() 
+    const dispatch = useAppDispatch()
+    const ContactSchema: Yup.ObjectSchema<ContactFormInitialType> = Yup.object().shape({
         name: Yup.string().matches(/^[A-Z][a-zA-Z]*\s[A-Z][a-zA-Z]*$/, 'Name must contain only English letters: "Alex Copeland"').min(2, '1 letter? For real?').max(15, 'Name is too long').required('Enter the name please'),
         number: Yup.string().matches(/^\d{3}-\d{2}-\d{2}$/, 'Incorrect number: "222-22-22"').required('Enter the number please')
     })
 
-    function submitHandler(values, actions) {
-        values.id = itemId
+    function submitHandler(values: ContactFormInitialType, actions: FormikHelpers<ContactFormInitialType>) {
+        // values.id = itemId
         // console.log(values.number, values.name)
         dispatch(addContact({ name: values.name, number: values.number }))
         actions.resetForm()
 
     }
 
-    return (<Formik
+    return (<Formik<ContactFormInitialType>
             initialValues={{
                 name: '',
                 number: '',
@@ -45,3 +46,5 @@ export default function ContactForm() {
             </Form>
         </Formik>)
 }
+
+export default ContactForm

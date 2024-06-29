@@ -1,14 +1,15 @@
-import { useSelector } from "react-redux"
+import { useAppSelector } from '../../pages/ContactsPage/ContactsPage.types'
 
 import css from './AppBar.module.css'
 import {selectIsLoggedIn } from '../../redux/auth/selectors'
 import Navigation from '../Navigation/Navigation'
 import AuthNav from "../AuthNav/AuthNav"
 import UserMenu from "../UserMenu/UserMenu"
+import { FC } from 'react'
 
 
-export default function AppBar() {
-    const isLogged = useSelector(selectIsLoggedIn)
+const AppBar: FC = () => {
+    const isLogged = useAppSelector(selectIsLoggedIn)
 
 
     return (
@@ -18,3 +19,5 @@ export default function AppBar() {
     </div>
 )
 }
+
+export default AppBar

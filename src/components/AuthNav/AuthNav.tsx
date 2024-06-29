@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
 
 import css from './AuthNav.module.css'
+import { FC } from "react"
 
-export default function AuthNav() {
+const AuthNav: FC = () => {
 
     return (
         <div className={css.container}>
@@ -11,3 +12,5 @@ export default function AuthNav() {
         </div>
     )
 }
+
+export default AuthNav

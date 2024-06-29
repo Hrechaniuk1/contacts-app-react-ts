@@ -1,8 +1,9 @@
 import {Link } from "react-router-dom";
 
 import css from './Navigation.module.css'
+import { FC } from "react";
 
-export default function Navigation() {
+const Navigation: FC = () => {
 
     return (
         <div className={css.container}>
@@ -11,3 +12,5 @@ export default function Navigation() {
         </div>
     )
 }
+
+export default Navigation

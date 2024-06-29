@@ -1,14 +1,15 @@
-import { useSelector } from "react-redux"
+import { useAppSelector } from "../../pages/ContactsPage/ContactsPage.types"
 import { nanoid } from "nanoid"
 
 import css from './ContactList.module.css'
 import Contact from '../Contact/Contact'
 import {selectVisibleContacts} from '../../redux/contacts/selectors'
+import { FC } from "react"
 
 
-export default function ContactList() {
+const ContactList: FC = () => {
 
-    const items = useSelector(selectVisibleContacts)
+    const items = useAppSelector(selectVisibleContacts)
 
 
 
@@ -24,3 +25,5 @@ export default function ContactList() {
         </ul>
     )
 }
+
+export default ContactList
