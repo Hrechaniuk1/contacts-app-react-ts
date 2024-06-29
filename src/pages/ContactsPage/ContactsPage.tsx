@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { toast, Toaster } from 'react-hot-toast';
 
@@ -10,16 +9,17 @@ import ContactList from '../../components/ContactList/ContactList'
 import { selectError, selectLoading } from '../../redux/contacts/selectors'
 import { fetchContacts } from '../../redux/contacts/operations'
 import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors'
+import { useAppDispatch, useAppSelector } from './ContactsPage.types';
 
 // ------
 
 export default function App() {
-    const err = useSelector(selectError)
-    const load = useSelector(selectLoading)
-    const logIn = useSelector(selectIsLoggedIn)
-    const user = useSelector(selectUser)
+    const err = useAppSelector(selectError)
+    const load = useAppSelector(selectLoading)
+    const logIn = useAppSelector(selectIsLoggedIn)
+    const user = useAppSelector(selectUser)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         if (logIn) {

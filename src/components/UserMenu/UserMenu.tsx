@@ -1,13 +1,14 @@
-import { useSelector, useDispatch } from "react-redux"
+import { useAppDispatch, useAppSelector } from '../../pages/ContactsPage/ContactsPage.types' 
 
 import { selectUser } from '../../redux/auth/selectors'
 import { logout } from "../../redux/auth/operations"
 import css from './UserMenu.module.css'
+import { FC } from 'react'
 
-export default function UserMenu() {
+const UserMenu: FC = () => {
 
-    const dispatch = useDispatch()
-    const user = useSelector(selectUser)
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(selectUser)
 
     function clickHandler() {
         dispatch(logout())
@@ -19,3 +20,6 @@ export default function UserMenu() {
         </div>
     )
 }
+
+
+export default UserMenu
