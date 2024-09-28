@@ -13,13 +13,11 @@
    git clone https://github.com/Hrechaniuk1/contacts-app-react-ts
 2. Перейди на сторінку проекту
    ```bash
-   cd contacts-app-server
+   cd contacts-app-react-ts
 4. Встанови залежості
    ```bash
    npm install
-6. Створи .env файл у кореневій директорії проекту та додай необхідні змінні середовища
-   перелік змінних в файлі .env.exaples
-7. Запусти сервер
+5. Запусти сервер
    ```bash
    npm run dev
 
